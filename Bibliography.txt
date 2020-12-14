@@ -10,3 +10,4 @@ mini-max-algorithm-in-ai.
 [5] Wikipedia. Artificial Neural Networks. url: https : / / en . wikipedia . org / wiki /
 Artificial_neural_network.
 [6] Wikipedia. Dameo. url: https://en.wikipedia.org/wiki/Dameo
+[7] Wikipedia. Minimax. url: https://en.wikipedia.org/wiki/Minimax.
