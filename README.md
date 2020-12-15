@@ -1,94 +1,70 @@
-# warzoneAI
-CIS – 667 Introduction to Artificial Intelligence
+Warzone
+Two player game based on Dameo
 
-Project Report For Warzone
+Types of Pieces: 2
 
-Kritika Chugh
-SUID : 882046659
-SU Email : kchugh@syr.edu
+Pawn: Can move forward or diagonal, Jump one piece in an orthogonal manner(up, down, left, right)
 
+King: Can move in 8 directions, step any direction, jump one piece in an orthogonal manner(up, down, left, right)
 
-Team Members : Warzone
-Mitarth Vaid (mivaid)
-Kritika Chugh (kchugh)
+A pawn can become a king when it reaches the opposite end of the board. A king has more moves than a pawn
 
+Obstacles: 1
 
-Introduction
-Warzone is derived from Dameo which is a strategy board game for 2 players, It
-was invented by Christian Freeling[6] in 2000. It is a variation of the game draughts
-and is played on an 8 by 8 checkered game board. It is considered one of the few
-abstract game that rarely ends in a draw[1].
-There are 18 pieces per player on the 8 by 8 board initially. Each player’s pieces
-are arranged so that the bottom three rows, from the view of each player are filled
-with 4,6,8 pawns respectively. Since we have the option of multiple board sizes, we
-will have different number of pieces on other board size.
-Initially, when the game starts, all the pieces are of same stature but it may change
-in the later stages
+Rock: Cannot move. Will be randomly placed from 2-6 in numbers. They just act as an obstacle and players may use it as cover. Pawns or kings cannot occupy these spots but can jump over them.
 
-AI
-We created 3 AIs for the game. They include baseline AI, tree-based AI and neural
-network AI.
-• Baseline AI: This AI takes its decision uniformly at random from the available
-choices. The decisions taken from this AI are chosen at random and will be not
-take into account the strength of the human user and consequences of the move.
-• Tree-Based AI: This AI is based on the minimax algorithm which is a recursive
-algorithm generally used in decision-making and game theory. It is used because
-it provides an optimal move for the AI assuming that opponent is also playing
-optimally. The decisions taken by this AI will take into consideration the move
-played by the human and will be aimed to provide better chances at winning
-for the AI.
-• Neural Network AI: This AI takes its decision based on a combination of
-neural network model and monte-carlo tree based algorithm and aims to provide 
-the strongest level of AI among all. With further training the model, this AI 
-can increase its strength and be more precise, fast and challenging.The decisions
-taken from this AI are chosen after performing monte-carlo tree search algorithm
-on the available choices given by the neural network model.
+The User will move first and then the computer moves.
 
-Tree based AI
-Minimax[7] is a fundamental decision making algorithm which is used in artificial
-intelligence, game theory and many more domains such as statistics, philosophy etc.
-for minimizing the possible loss for the worst case scenario thereby maximizing gains.
-It was originally formulated for n-player zero-sum game theory, which covered both
-the cases where players take alternate moves or simultaneous moves. It was later
-extended to more complex games and to general decision-making in the presence of
-uncertainty.
-Minimax guarantees as good an outcome as possible in the worst case scenario.
-Consider the case when an opponent makes mistakes that help the AI (a”good case”),
-but they can also choose actions very bad for the AI (a ”bad case”), or as bad as
-possible for the AI (the ”worst case”). The minimax algorithm will get the best
-possible outcome for the AI, assuming the worst case. If the opponent makes a
-mistake, then the AI can do even better than the result guaranteed by the minimax
-algorithm.
-• We score each game from the perspective of the AI, so the AI wants to maximize
-the final game score.
-• We have positive final scores are good for the AI and bad for the opponent and
-negative final scores that are bad for the AI and good for the opponent.
-• AI is called the ”max” player and human is called the ”min” player.
-The basic structure[3] of the algorithm is given by the following function:-
-minimax(node):
-return score for max(node)
-child results = []
-2
-for child in children(node):
-child results.append(minimax(child))
-if player(node) == ”max”: result = max(child results)
-if player(node) == ”min”: result = min(child results)
-return result
+Movement
 
-Neural Networks
-Neural networks, also called Artificial neural networks[5] are computational systems based on the interpretation of biological neural networks that constitute animal
-brains. A Neural Network is constructed on collection of nodes called neurons, which
-resemble the neurons in a biological brain. Each connection can transmit a signal to
-other neurons just like the synapses in brain. An artificial neuron which receives a
-signal, processes it, and then signals it to the neurons connected to it. The connections are called edges and the signal at each connection is a real number. The output
-of each neuron is calculated by employing a non-linear function of its inputs. All
-the neurons and edges have a weight that adjusts as the model learns. The weight
-increases or decreases the strength of the signal at a connection. A neural network
-model is trained to reduce the mean squared error to 0. Usually, neurons are aggregated into a set of layers but if the model is not to be complex, a single layer can
-work. Distinct layers perform distinct transformations on their inputs. Signals travel
-from the first layer (the input layer), to the last layer (the output layer) giving the
-final output. I used one hot encoding to encode my state into valid neural network
-model and then use convolutional neural network[2] to operate upon it
+Pawns can only move forward, either straight ahead or diagonally.
 
+Pawn can jump over other one or more other subsequent Pawn of the same color if the square ahead of the line is free.
 
+When a Pawn reaches the opposite end of the board, it is promoted to a king.
 
+The king can move in 8 directions to any available number of cells.
+
+Capturing
+
+In these types of moves, user jumps over enemy piece removing them from the board. Capture can occur in orthogonal direction only.
+
+A Pawn may capture forwards, backwards and sideways by a short leap two squares beyond to an unoccupied square opposite the captured piece.
+
+A king may capture by a long leap to any unoccupied square opposite the captured piece, so long as there is no other piece obstructing the path of the king.
+
+A jumped piece will be removed from the board at the end of the turn.
+
+Results
+
+A player will lose if one of the following happens -> He has no pieces left on board. -> He has no valid moves remaining. This occurs if all the player's pieces are obstructed from moving by opponent pieces.
+
+A game is a draw if neither player can win the game.
+
+A game is also considered a draw when the same position repeats three times by the same player (not necessarily consecutively).
+
+Gameplay Directions
+
+How to play the game?
+
+Run the Warzone.py file using python compiler or command line.
+
+Enter the size of the board you want to play on.
+
+The game now has the AI to play with.
+
+Choose the AI to play. 2 options available for AI( Baseline AI and Tree-based AI ).
+
+You will have a view of the board (2D).
+
+You need to select the coordinates of one of your pieces that you want to move in the x,y format. 2D view can help you in that.
+
+You will then have a list of all the available moves that piece you selected can take.
+
+You need to select the index of the move you want to play. The indexing is zero based. i.e. if you want to play the 5th move, enter 4.
+
+Your piece will move to the desired location.
+
+The AI will play its own move accordingly.
+
+Enjoy.
