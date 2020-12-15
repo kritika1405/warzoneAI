@@ -690,11 +690,7 @@ def get_batch(board_size=3, num_games=1, num_rollouts=5, max_depth=4, choose_met
 
 
 def Warzone_NN(board_size):
-    # m = Sequential(
-    #     #Flatten(),
-    #     Conv2d(6,1,board_size,bias=True))
-    # return m
-    
+   
     m = tr.nn.Sequential(
         tr.nn.Conv2d(6,1,3,bias=True),
         tr.nn.Flatten(),
